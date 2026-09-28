@@ -46,7 +46,7 @@ export function Hero() {
           className="absolute inset-0 z-[1] h-[541px] w-[578px] drop-shadow-[25px_37px_36px_rgb(0_0_0/0.1)]"
         />
         <ProgressCard className="absolute top-[139px] left-[411px] z-[1]" />
-        <HappyStudentsCard className="absolute top-[325px] left-[-103px] z-[1]" />
+        <HappyStudentsCard className="absolute top-[325px] left-[-103px] z-[1] max-sm:hidden" />
         <CategoryStatCard className="absolute top-[127px] left-[-27px] z-[3]" />
       </div>
 

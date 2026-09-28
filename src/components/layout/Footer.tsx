@@ -23,7 +23,7 @@ export function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white">
       <div className="container-page pt-[70px] pb-12">
-        <div className="flex flex-col gap-12 lg:flex-row lg:gap-[92px]">
+        <div className="flex flex-col gap-12 xl:flex-row xl:gap-[92px]">
           <div className="flex w-full max-w-[528px] flex-col gap-[45px]">
             <div className="flex flex-col gap-4">
               <Logo tone="dark" />
@@ -34,7 +34,7 @@ export function Footer() {
             <NewsletterForm />
           </div>
 
-          <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-3 lg:w-[580px] lg:grid-cols-[167px_167px_1fr]">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-3 xl:w-[580px] xl:grid-cols-[167px_167px_1fr]">
             {columns.map((col, i) => (
               <div key={i} className="flex flex-col gap-6">
                 {col.title ? (

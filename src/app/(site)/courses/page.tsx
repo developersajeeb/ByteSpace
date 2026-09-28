@@ -42,7 +42,7 @@ export default async function CoursesPage({ searchParams }: PageProps<"/courses"
         <CategoryPills rows={[catalogTopics]} spread className="mt-8" />
 
         {results.length ? (
-          <ul className="mt-10 grid justify-items-center gap-10 sm:grid-cols-2 lg:mt-[77px] lg:grid-cols-3">
+          <ul className="mt-10 grid grid-cols-1 justify-items-center gap-10 sm:grid-cols-2 lg:mt-[77px] lg:grid-cols-3">
             {results.map((course, i) => (
               <li key={course.key} className="w-full max-w-[373px]">
                 <CourseCard course={course} priority={i < 3} />

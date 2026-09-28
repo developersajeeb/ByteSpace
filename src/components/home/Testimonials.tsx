@@ -10,17 +10,17 @@ export function Testimonials() {
       <GlowBlob color="blue" size={1137} opacity={0.2} x={-442} y={149} />
 
       <div className="container-page relative flex max-w-[1236px] flex-col gap-12 lg:gap-[72px]">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-[43px]">
-          <h2 className="font-poppins text-[32px] leading-[1.2] font-semibold tracking-[-0.01em] text-black sm:text-[44px] lg:w-[577px] lg:shrink-0">
+        <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:gap-[43px]">
+          <h2 className="font-poppins text-[32px] leading-[1.2] font-semibold tracking-[-0.01em] text-black sm:text-[44px] xl:w-[577px] xl:shrink-0">
             Discover What Our Community Is Saying
           </h2>
-          <p className="type-body-l text-neutral-700 lg:w-[580px]">
+          <p className="type-body-l text-neutral-700 xl:w-[580px]">
             At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have
             experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse
             perspectives of enthusiastic learners and accomplished creators.
           </p>
         </div>
-        <div className="grid items-start justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-[41px]">
+        <div className="grid grid-cols-1 items-start justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-[41px]">
           {testimonials.map((t, i) => (
             <TestimonialCard key={t.name} {...t} roomy={i > 0} />
           ))}

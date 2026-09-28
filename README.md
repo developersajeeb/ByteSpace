@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ByteSpace New
 
-## Getting Started
+A course-marketplace website built with **Next.js 16 (App Router)**, **React 19**, **TypeScript** and **Tailwind CSS v4**. The site recreates the Figma file *"ByteSpace New Check website"* as closely as possible.
 
-First, run the development server:
+## Pages
+
+| Route | Figma frame |
+| --- | --- |
+| `/` | Home (landing page) |
+| `/login` | Login |
+| `/register` | Register |
+| `/courses` | Search Page (`?q=` search, `?page=` pagination) |
+| `/courses/[slug]` | Course Details (About tab) |
+| `/courses/[slug]/lessons` | Course Lessons |
+| `/courses/[slug]/reviews` | Course Reviews |
+| `/creators/[slug]` | Creator Profile |
+| any unknown URL | 404 Not Found |
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    (site)/            pages that share the header + footer
+      courses/[slug]/  shared course layout (hero, video, sidebar) + tab pages
+    (auth)/            login & register (logo-only header)
+    not-found.tsx      404 page
+    globals.css        design tokens (colors, text styles) from the Figma style guide
+    fonts/             self-hosted Satoshi + Clash Display
+  components/
+    layout/            Header, Footer, Logo, NewsletterForm
+    ui/                Button, SearchBar, CategoryPills, Pagination, AvatarStack, SectionHeading
+    cards/             CourseCard, CategoryCard, TestimonialCard, floating stat cards
+    decor/             grid lines, 3D ornaments, glow blobs, blue band
+    home/ course/ auth/ courses/ creator/   page sections
+    icons/             Icon component + generated Material icon paths
+  data/                course, category, testimonial, creator content (copied from Figma)
+  lib/                 cn() helper, form validation
+tools/figma/           dev-only scripts used to read the Figma file (see below)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How the design was matched
 
-## Learn More
+The Figma file could not be opened through the Figma API, so the exported `.fig` file was decoded locally with a small kiwi decoder in `tools/figma/`:
 
-To learn more about Next.js, take a look at the following resources:
+- `dump.mjs <nodeId>`: prints every layer's position, size, auto-layout gaps and padding, colors (with shared styles resolved), and typography.
+- `assets.mjs`: exports photos as WebP, the colorized 3D shapes, logos as SVG, and Material icon paths (`src/components/icons/icon-data.ts`).
+- `render.mjs` and `compare.js`: render each Figma frame as HTML, then compare the position, size, font and color of every text element on the live page against the design at 1440px.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All nine pages come out within a few pixels of the design on desktop. The design is desktop-only, so tablet and mobile layouts were added: sections stack, a mobile menu appears, and decorative elements are scaled down.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> The decoding scripts need the original `design/bytespace.fig` file, which is git-ignored because of its size. The generated assets are committed.
 
-## Deploy on Vercel
+## Notes for the reviewer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- There is no backend. The login, register and newsletter forms validate input on the client and then show a success state.
+- The course search filters the sample courses by title.
+- A few places where the Figma file is inconsistent were normalised:
+  - long course titles are truncated instead of overflowing onto the author line;
+  - the rating breakdown shows the matching number of stars per row;
+  - the creator bio's "[Creator's Name]" placeholder is filled in;
+  - the active navigation link follows the current page.

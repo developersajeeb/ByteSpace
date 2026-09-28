@@ -10,8 +10,8 @@ const partners = [
 
 export function Partners() {
   return (
-    <section aria-label="Our partners" className="bg-gray-50 py-12 lg:h-[202px] lg:py-0 lg:pt-20">
-      <ul className="container-page flex flex-wrap items-end justify-center gap-x-10 gap-y-6 lg:flex-nowrap lg:gap-[72px]">
+    <section aria-label="Our partners" className="bg-gray-50 py-12 xl:h-[202px] xl:py-0 xl:pt-20">
+      <ul className="container-page flex flex-wrap items-end justify-center gap-x-10 gap-y-6 xl:flex-nowrap xl:gap-[72px]">
         {partners.map((p, i) => (
           <li key={p.src}>
             <Image src={p.src} alt={`Partner logo ${i + 1}`} width={p.width} height={p.height} className="h-auto max-w-[120px] sm:max-w-none" />

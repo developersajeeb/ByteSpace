@@ -8,14 +8,12 @@ import { cn } from "@/lib/cn";
 type CourseCardProps = {
   course: Course;
   className?: string;
-  /** Home/auth pages use the round light star, listing pages the filled dark one. */
-  starStyle?: "light" | "dark";
   priority?: boolean;
   /** "feature" = the copy shown in the Growth section (taller line-heights, dark learners bubble). */
   variant?: "default" | "feature";
 };
 
-export function CourseCard({ course, className, starStyle = "light", priority, variant = "default" }: CourseCardProps) {
+export function CourseCard({ course, className, priority, variant = "default" }: CourseCardProps) {
   const feature = variant === "feature";
   const stats = [`${course.lessons} Lessons`, course.duration, `${course.comments} Comments`];
 
@@ -76,10 +74,7 @@ export function CourseCard({ course, className, starStyle = "light", priority, v
 
         <p className={cn("flex shrink-0 items-center type-body-l text-neutral-700", feature && "leading-7 font-medium")}>
           {course.rating}
-          <Icon
-            name={starStyle === "light" ? "star-rate-round" : "star-rate-filled"}
-            className={cn("ml-1", starStyle === "light" ? "text-gray-200" : "text-gray-700")}
-          />
+          <Icon name="star-rate-round" className="ml-1 text-gray-200" />
           <span className="sr-only">out of 5 stars</span>
         </p>
       </div>
