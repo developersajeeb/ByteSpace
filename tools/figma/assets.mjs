@@ -78,7 +78,7 @@ for (const [name, { hash, color }] of combos) {
 console.log("ornaments", [...combos.keys()].join(", "));
 
 // Logos as standalone SVG files.
-const svgs = { "logo-mark": "1:1788", "partner-1": "1:1709", "partner-2": "1:1720", "partner-3": "1:1736", "partner-4": "1:1747", "partner-5": "1:1758" };
+const svgs = { "logo-mark": "1:1788", "partner-1": "1:1709", "partner-2": "1:1720", "partner-3": "1:1736", "partner-4": "1:1747", "partner-5": "1:1758", "social-facebook": "50:356", "social-google": "50:360" };
 for (const [name, id] of Object.entries(svgs)) fs.writeFileSync(out(`public/svg/${name}.svg`), toSvg(map[id], map, blobs));
 console.log("svgs", Object.keys(svgs).length);
 

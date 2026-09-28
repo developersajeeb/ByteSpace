@@ -66,12 +66,15 @@ export function CourseCard({ course, className, starStyle = "light", priority, v
           </div>
 
           <p className="flex items-end">
-            <span className="type-heading-xs text-blue-800">${course.price}</span>
+            <span className="type-heading-xs text-blue-800">
+              <span className={cn(feature && "font-medium")}>$</span>
+              {course.price}
+            </span>
             <span className="type-body-xs text-neutral-700">/lifetime</span>
           </p>
         </div>
 
-        <p className="flex shrink-0 items-center type-body-l text-neutral-700">
+        <p className={cn("flex shrink-0 items-center type-body-l text-neutral-700", feature && "leading-7 font-medium")}>
           {course.rating}
           <Icon
             name={starStyle === "light" ? "star-rate-round" : "star-rate-filled"}

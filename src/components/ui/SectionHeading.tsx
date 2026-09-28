@@ -16,8 +16,9 @@ export function SectionHeading({ title, description, size = "m", align = "center
     <div className={cn("flex flex-col gap-4", align === "center" ? "items-center text-center" : "items-start", className)}>
       <h2
         className={cn(
-          "font-poppins leading-[1.2] font-semibold tracking-[-0.01em] text-vulcan-950",
+          "font-poppins font-semibold tracking-[-0.01em] text-vulcan-950",
           size === "m" ? "text-[32px] sm:text-[44px]" : "text-[28px] sm:text-[36px]",
+          "leading-[1.2]",
           titleClassName,
         )}
       >
