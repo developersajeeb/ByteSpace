@@ -99,7 +99,7 @@ function applyStyles(nodes, map) {
   for (const n of nodes) {
     if (n.styleType) continue;
     const fill = find(n.styleIdForFill);
-    if (fill?.fillPaints) n.fillPaints = fill.fillPaints;
+    if (fill?.fillPaints?.length) n.fillPaints = fill.fillPaints;
     const stroke = find(n.styleIdForStrokeFill);
     if (stroke?.fillPaints) n.strokePaints = stroke.fillPaints;
     const fx = find(n.styleIdForEffect);

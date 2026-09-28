@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Design tokens mirror the Figma "Style Guide" page (colors + text styles). */
+@theme {
+  --font-sans: var(--font-satoshi), ui-sans-serif, system-ui, sans-serif;
+  --font-poppins: var(--font-poppins-google), ui-sans-serif, sans-serif;
+  --font-clash: var(--font-clash-display), ui-sans-serif, sans-serif;
+  --font-inter: var(--font-inter-google), ui-sans-serif, sans-serif;
+
+  --color-lime-50: #fdffe4;
+  --color-lime-100: #faffc5;
+  --color-lime-200: #f2ff92;
+  --color-lime-300: #e4ff54;
+  --color-lime-400: #d4fb20;
+  --color-lime-500: #cbfc01;
+  --color-lime-600: #8cb400;
+  --color-lime-700: #6a8902;
+
+  --color-mindaro-400: #c1e338;
+
+  --color-blue-50: #e7f6ff;
+  --color-blue-100: #d3eeff;
+  --color-blue-200: #b0ddff;
+  --color-blue-300: #81c5ff;
+  --color-blue-400: #4f9dff;
+  --color-blue-500: #2872ff;
+  --color-blue-600: #0445ff;
+  --color-blue-700: #0043ff;
+  --color-blue-800: #003be2;
+  --color-blue-900: #0b36a4;
+  --color-blue-950: #071e5f;
+
+  --color-gray-50: #f5f5f6;
+  --color-gray-100: #e5e6e8;
+  --color-gray-200: #ced0d3;
+  --color-gray-300: #abaeb5;
+  --color-gray-400: #82868e;
+  --color-gray-500: #666973;
+  --color-gray-600: #585a62;
+  --color-gray-700: #4b4c53;
+  --color-gray-800: #424348;
+  --color-gray-900: #3a3b3f;
+  --color-gray-950: #242528;
+
+  --color-neutral-100: #e7e7e7;
+  --color-neutral-200: #d1d1d1;
+  --color-neutral-400: #888888;
+  --color-neutral-700: #4f4f4f;
+  --color-neutral-800: #454545;
+
+  --color-violet-50: #f5f2ff;
+  --color-violet-600: #7f30f7;
+  --color-violet-950: #300b6a;
+
+  --color-vulcan-950: #040819;
+  --color-surface: #fafafa;
+  --color-chip: #f6f6f6;
+
+  --shadow-photo: 0.5px 0.7px 3px rgb(0 0 0 / 0.04), 2.2px 3.2px 5.7px rgb(0 0 0 / 0.06), 5.4px 7.7px 9.6px rgb(0 0 0 / 0.07),
+    10.2px 14.6px 16.1px rgb(0 0 0 / 0.08), 16.9px 24.2px 24px rgb(0 0 0 / 0.09), 25.8px 36.9px 36px rgb(0 0 0 / 0.1),
+    37.1px 53px 56px rgb(0 0 0 / 0.11), 51px 72.9px 72px rgb(0 0 0 / 0.13);
+  --shadow-float: 0 1.85px 3.15px rgb(0 0 0 / 0.017), 0 8.15px 6.52px rgb(0 0 0 / 0.027), 0 20px 13px rgb(0 0 0 / 0.035),
+    0 38.5px 25.5px rgb(0 0 0 / 0.043), 0 64.8px 46.9px rgb(0 0 0 / 0.053), 0 100px 80px rgb(0 0 0 / 0.07);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Text styles — one utility per Figma text style. */
+@utility type-heading-l {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+@utility type-heading-m {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+@utility type-heading-s {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+@utility type-heading-xs {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+@utility type-display-s {
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 52px;
+  letter-spacing: -0.01em;
+}
+@utility type-display-xs {
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -0.01em;
+}
+@utility type-label-xl {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+}
+@utility type-label-l {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+}
+@utility type-label-m {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+@utility type-label-s {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+}
+@utility type-label-xs {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.2;
+}
+@utility type-body-l {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.6;
+}
+@utility type-body-m {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+}
+@utility type-body-s {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+}
+@utility type-body-xs {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Page container: 1200px content column centred in the 1440px Figma frame. */
+@utility container-page {
+  width: 100%;
+  max-width: calc(1200px + 2rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background: #ffffff;
+    color: var(--color-gray-950);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
