@@ -1,7 +1,7 @@
 import { extendTailwindMerge } from "tailwind-merge";
 
 // Teach tailwind-merge about the custom text-style utilities so they don't get dropped.
-const twMerge = extendTailwindMerge({
+const twMerge = extendTailwindMerge<"type-style">({
   extend: {
     classGroups: {
       "type-style": [{ type: [(v: string) => /^(heading|display|label|body)-/.test(v)] }],
