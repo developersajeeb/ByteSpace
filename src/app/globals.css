@@ -63,33 +63,33 @@
     0 38.5px 25.5px rgb(0 0 0 / 0.043), 0 64.8px 46.9px rgb(0 0 0 / 0.053), 0 100px 80px rgb(0 0 0 / 0.07);
 }
 
-/* Text styles — one utility per Figma text style. */
+/* Text styles — one utility per Figma text style (line-heights rounded to whole px like Figma renders them). */
 @utility type-heading-l {
   font-family: var(--font-poppins);
   font-weight: 600;
   font-size: 72px;
-  line-height: 1.2;
+  line-height: 86px;
   letter-spacing: -0.01em;
 }
 @utility type-heading-m {
   font-family: var(--font-poppins);
   font-weight: 600;
   font-size: 44px;
-  line-height: 1.2;
+  line-height: 53px;
   letter-spacing: -0.01em;
 }
 @utility type-heading-s {
   font-family: var(--font-poppins);
   font-weight: 600;
   font-size: 36px;
-  line-height: 1.2;
+  line-height: 43px;
   letter-spacing: -0.01em;
 }
 @utility type-heading-xs {
   font-family: var(--font-poppins);
   font-weight: 600;
   font-size: 20px;
-  line-height: 1.2;
+  line-height: 24px;
   letter-spacing: -0.01em;
 }
 @utility type-display-s {
@@ -109,47 +109,47 @@
 @utility type-label-xl {
   font-weight: 500;
   font-size: 20px;
-  line-height: 1.2;
+  line-height: 24px;
 }
 @utility type-label-l {
   font-weight: 500;
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 22px;
 }
 @utility type-label-m {
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 19px;
 }
 @utility type-label-s {
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 17px;
 }
 @utility type-label-xs {
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.2;
+  line-height: 14px;
 }
 @utility type-body-l {
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 29px;
 }
 @utility type-body-m {
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 26px;
 }
 @utility type-body-s {
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 22px;
 }
 @utility type-body-xs {
   font-weight: 400;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 19px;
 }
 
 /* Page container: 1200px content column centred in the 1440px Figma frame. */

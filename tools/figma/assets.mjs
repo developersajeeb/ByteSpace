@@ -109,7 +109,7 @@ for (const id of used) {
   const name = `${map[key(c.parentIndex.guid)].name}-${c.name.replace("Style=", "").replace(" ", "-")}`.toLowerCase().replace(/_/g, "-");
   icons[name] = { size: [c.size.x, c.size.y], paths: iconPaths(c) };
 }
-const extra = { "design": "11:71", "star": "1:1826" };
+const extra = { "design": "11:71", "star": "1:1826", "play": "55:4204" };
 for (const [name, id] of Object.entries(extra)) {
   const n = map[id];
   icons[name] = { size: [Math.round(n.size.x * 100) / 100, Math.round(n.size.y * 100) / 100], paths: n.children.length ? iconPaths(n) : iconPaths({ children: [{ ...n, transform: null, children: [] }] }) };

@@ -14,3 +14,5 @@ export const categories: { label: string; icon: IconName }[] = [
   { label: "Marketing", icon: "connect-without-contact-outlined" },
   { label: "Photography", icon: "photo-camera-front-outlined" },
 ];
+
+export const catalogTopics = ["Featured", "Music", "Drawing & Painting", "Marketing", "Animation", "Social Media", "UI/UX Design", "Creative Marketing", "Cooking"];

@@ -7,16 +7,18 @@ type CategoryPillsProps = {
   /** Each inner array is one centred row on desktop (matches the Figma line breaks). */
   rows: string[][];
   moreLabel?: string;
+  /** Spread a single row across the full width (catalog page) instead of centring it. */
+  spread?: boolean;
   className?: string;
 };
 
-export function CategoryPills({ rows, moreLabel, className }: CategoryPillsProps) {
+export function CategoryPills({ rows, moreLabel, spread, className }: CategoryPillsProps) {
   const [active, setActive] = useState(rows[0][0]);
 
   return (
     <div className={cn("flex flex-wrap justify-center gap-x-4 gap-y-3 lg:gap-y-[21px]", className)} role="tablist" aria-label="Course categories">
       {rows.map((row, i) => (
-        <div key={i} className="flex flex-wrap justify-center gap-3 max-lg:contents lg:w-full lg:gap-4">
+        <div key={i} className={cn("flex flex-wrap justify-center gap-3 max-lg:contents lg:w-full lg:gap-4", spread && "xl:flex-nowrap xl:justify-between")}>
           {row.map((label) => (
             <button
               key={label}

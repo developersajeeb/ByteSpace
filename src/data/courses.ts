@@ -40,3 +40,6 @@ export const courses: Course[] = [
 export const getCourse = (slug: string) => courses.find((c) => c.slug === slug);
 
 export const courseAvatars = ["/images/avatar-2.webp", "/images/avatar-8.webp", "/images/avatar-9.webp", "/images/avatar-10.webp"];
+
+/** The catalog page lists three "pages" worth of the sample courses (18 cards in the design). */
+export const catalog = [0, 1, 2].flatMap((page) => courses.map((course) => ({ ...course, key: `${course.slug}-${page}` })));
