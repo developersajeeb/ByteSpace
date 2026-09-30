@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "next/form";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { cn } from "@/lib/cn";
 
@@ -19,6 +19,17 @@ const scopes = ["Courses", "Creators"] as const;
 export function SearchBar({ defaultValue, placeholder = "Course, topic, creator", variant = "default", className }: SearchBarProps) {
   const [scope, setScope] = useState<(typeof scopes)[number]>("Courses");
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // Close the scope menu when clicking anywhere outside it.
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [open]);
 
   return (
     <Form action="/courses" role="search" className={cn("flex w-full gap-3 sm:gap-4", variant === "scope" ? "max-w-[624px]" : "max-w-[581px]", className)}>
@@ -42,7 +53,13 @@ export function SearchBar({ defaultValue, placeholder = "Course, topic, creator"
           Search
         </button>
       ) : (
-        <div className="relative shrink-0">
+        <div
+          ref={menuRef}
+          className="relative shrink-0"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setOpen(false);
+          }}
+        >
           <input type="hidden" name="scope" value={scope.toLowerCase()} />
           <button
             type="button"
@@ -52,10 +69,14 @@ export function SearchBar({ defaultValue, placeholder = "Course, topic, creator"
             className="flex h-12 items-center gap-2 rounded-3xl bg-lime-400 px-6 type-label-l text-gray-950 transition-colors hover:bg-lime-300"
           >
             {scope}
-            <Icon name="keyboard-arrow-down-filled" className={cn("transition-transform", open && "rotate-180")} />
+            <Icon name="keyboard-arrow-down-filled" className={cn("transition-transform duration-200", open && "rotate-180")} />
           </button>
           {open && (
-            <ul role="listbox" className="absolute top-full right-0 z-20 mt-2 w-full overflow-hidden rounded-2xl bg-white py-2 shadow-float">
+            <ul
+              role="listbox"
+              aria-label="Search in"
+              className="absolute top-full right-0 z-30 mt-2 min-w-full overflow-hidden rounded-2xl border border-gray-100 bg-white p-1.5 shadow-float"
+            >
               {scopes.map((s) => (
                 <li key={s}>
                   <button
@@ -66,9 +87,13 @@ export function SearchBar({ defaultValue, placeholder = "Course, topic, creator"
                       setScope(s);
                       setOpen(false);
                     }}
-                    className={cn("w-full px-6 py-2 text-left type-label-m hover:bg-gray-50", scope === s && "text-blue-800")}
+                    className={cn(
+                      "flex w-full items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-left type-label-m transition-colors",
+                      scope === s ? "bg-lime-50 text-gray-950" : "text-gray-700 hover:bg-gray-50",
+                    )}
                   >
                     {s}
+                    {scope === s && <Icon name="check-circle-filled" size={18} className="text-blue-800" />}
                   </button>
                 </li>
               ))}

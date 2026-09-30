@@ -28,7 +28,7 @@ export default async function CoursesPage({ searchParams }: PageProps<"/courses"
 
   return (
     <>
-      <BlueBand className="h-[300px] sm:h-[360px]">
+      <BlueBand className="z-10 h-[300px] overflow-visible sm:h-[360px]">
         <div className="container-page flex flex-col items-center gap-8 pt-[120px] sm:pt-[164px]">
           <h1 className="text-center font-poppins text-[28px] font-semibold tracking-[-0.01em] text-gray-50 sm:text-[36px] leading-[1.2]">
             Find Your Next Course
