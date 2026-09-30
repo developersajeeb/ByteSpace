@@ -5,11 +5,12 @@ import { cn } from "@/lib/cn";
 type LogoProps = {
   tone?: "light" | "dark";
   className?: string;
+  onClick?: () => void;
 };
 
-export function Logo({ tone = "light", className }: LogoProps) {
+export function Logo({ tone = "light", className, onClick }: LogoProps) {
   return (
-    <Link href="/" className={cn("flex h-[37px] w-[171px] shrink-0 items-start", className)} aria-label="ByteSpace home">
+    <Link href="/" onClick={onClick} className={cn("flex h-[37px] w-[171px] shrink-0 items-start", className)} aria-label="ByteSpace home">
       <Image src="/svg/logo-mark.svg" alt="" width={29} height={32} priority className="h-[31.5px] w-[28.9px]" />
       <span
         className={cn(

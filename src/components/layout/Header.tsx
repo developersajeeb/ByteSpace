@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icons/Icon";
 import { cn } from "@/lib/cn";
 import { Logo } from "./Logo";
@@ -22,11 +22,28 @@ export function Header() {
   // The menu belongs to the page it was opened on, so navigating closes it.
   const [openOn, setOpenOn] = useState<string | null>(null);
   const open = openOn === pathname;
+  const close = () => setOpenOn(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // Close on Escape or a tap outside the header while the mobile menu is open.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenOn(null);
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setOpenOn(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
+  }, [open]);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-30 h-[88px] lg:h-[120px]">
+    <header ref={headerRef} className="absolute inset-x-0 top-0 z-30 h-[88px] lg:h-[120px]">
       <div className="container-page relative flex h-full items-center lg:block">
-        <Logo className="lg:absolute lg:top-[35px] lg:left-[calc(1rem+2px)]" />
+        <Logo onClick={close} className="lg:absolute lg:top-[35px] lg:left-[calc(1rem+2px)]" />
 
         <nav aria-label="Main" className="hidden lg:absolute lg:top-[47px] lg:left-1/2 lg:flex lg:-translate-x-1/2 lg:gap-6">
           {navLinks.map(({ href, label }) => (
@@ -70,7 +87,8 @@ export function Header() {
 
       {open && (
         <div className="container-page lg:hidden">
-          <nav aria-label="Mobile" className="flex flex-col gap-1 rounded-2xl bg-white p-4 shadow-float">
+          {/* Any tap on a link closes the menu right away, even before the next page renders. */}
+          <nav aria-label="Mobile" onClick={(e) => (e.target as HTMLElement).closest("a") && close()} className="flex flex-col gap-1 rounded-2xl bg-white p-4 shadow-float">
             {navLinks.map(({ href, label }) => (
               <Link
                 key={href}

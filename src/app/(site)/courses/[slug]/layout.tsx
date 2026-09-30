@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CourseHero } from "@/components/course/CourseHero";
 import { CourseSidebar } from "@/components/course/CourseSidebar";
+import { ScrollToTop } from "@/components/course/ScrollToTop";
 import { courseDetail } from "@/data/course-detail";
 import { courses, getCourse } from "@/data/courses";
 
@@ -24,6 +25,7 @@ export default async function CourseLayout({ children, params }: LayoutProps<"/c
 
   return (
     <>
+      <ScrollToTop />
       <CourseHero
         title={headlineFor(course.slug, course.title)}
         subtitle={courseDetail.subtitle}
