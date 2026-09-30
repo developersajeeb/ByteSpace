@@ -43,3 +43,6 @@ next-env.d.ts
 # figma source + generated dumps (tools/figma reads design/bytespace.fig locally)
 /design/
 /tools/figma/out/
+
+# local Figma reference renders (dev only)
+/public/__ref/
