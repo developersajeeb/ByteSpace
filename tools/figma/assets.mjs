@@ -19,10 +19,11 @@ const full = (prefix) => {
   return hashHex(n.image.hash);
 };
 
-// Photos: [hash prefix, output name, output width]
+// Photos: [hash prefix, output name, output width, optional crop]
 const photos = [
   ["29a52a24e5", "hero-student", 1156],
-  ["0d6596fb1d", "creator-student", 870],
+  // Figma crops this square photo (STRETCH fill with an image transform) to its central 318×436 region.
+  ["0d6596fb1d", "creator-student", 870, { left: 91, top: 0, width: 318, height: 436 }],
   ["93ad9f9e6b", "course-figma", 682],
   ["c88264191d", "course-digital-asset", 682],
   ["4f3bdea568", "course-big-data", 682],
@@ -51,8 +52,9 @@ const photos = [
   ["bfd09b20f2", "avatar-creator", 160],
 ];
 
-for (const [prefix, name, width] of photos) {
-  await sharp(img(full(prefix))).resize({ width, withoutEnlargement: true }).webp({ quality: 82 }).toFile(out(`public/images/${name}.webp`));
+for (const [prefix, name, width, crop] of photos) {
+  const src = crop ? sharp(img(full(prefix))).extract(crop) : sharp(img(full(prefix)));
+  await src.resize({ width, withoutEnlargement: true }).webp({ quality: 82 }).toFile(out(`public/images/${name}.webp`));
 }
 console.log("photos", photos.length);
 

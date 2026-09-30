@@ -92,14 +92,9 @@ export function Growth() {
         <div className="flex flex-col-reverse items-center gap-12 xl:translate-x-px xl:flex-row xl:gap-[79px]">
           <div {...reveal("zoom")} className="relative h-[596px] w-[541px] shrink-0 max-md:[zoom:0.8] max-sm:[zoom:0.56]">
             <RevenueCards />
-            <Image
-              src="/images/creator-student.webp"
-              alt="Creator holding a tablet"
-              width={435}
-              height={596}
-              sizes="435px"
-              className="absolute top-0 left-7 h-[596px] w-[435px] object-fill drop-shadow-[25px_37px_36px_rgb(0_0_0/0.1)]"
-            />
+            <div className="absolute top-0 left-7 h-[596px] w-[435px] shadow-photo">
+              <Image src="/images/creator-student.webp" alt="Creator holding a tablet" fill sizes="435px" className="object-cover" />
+            </div>
             <HappyStudentsCard roomy style={stagger(2)} className="float absolute top-[413px] left-[283px]" />
             <Image src="/images/ornaments/e3b55902d6-lime.webp" alt="" width={216} height={216} style={stagger(3)} className={`float-slow ${ornament} top-[114px] left-[303px]`} />
           </div>
