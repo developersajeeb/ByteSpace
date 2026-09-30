@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Icon } from "@/components/icons/Icon";
 import { ButtonLink } from "@/components/ui/Button";
 import { courseDetail } from "@/data/course-detail";
+import { stagger } from "@/lib/motion";
+import { cn } from "@/lib/cn";
 
 type CourseSidebarProps = {
   price: number;
@@ -13,7 +15,7 @@ type CourseSidebarProps = {
 export function CourseSidebar({ price, className }: CourseSidebarProps) {
   const { syllabus, cta, includes, creator } = courseDetail;
   return (
-    <aside className={className}>
+    <aside style={stagger(3)} className={cn("intro", className)}>
       <div className="flex flex-col gap-6 rounded-3xl border border-gray-200 bg-white p-6 sm:p-[39px]">
         <section className="flex flex-col gap-6">
           <h2 className="type-heading-xs text-gray-950">{syllabus.summary}</h2>

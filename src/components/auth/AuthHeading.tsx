@@ -12,7 +12,7 @@ export function AuthHeading({ eyebrow, title }: { eyebrow: string; title: string
 
 export function AuthSuccess({ title, message }: { title: string; message: string }) {
   return (
-    <div className="flex flex-col items-start gap-6 lg:min-h-[683px] lg:justify-center" role="status">
+    <div className="flex flex-col items-start gap-6 xl:min-h-[683px] xl:justify-center" role="status">
       <Icon name="check-circle-filled" size={56} className="text-blue-800" />
       <AuthHeading eyebrow="Success" title={title} />
       <p className="type-body-l text-gray-700">{message}</p>

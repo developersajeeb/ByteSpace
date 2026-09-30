@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NewsletterForm } from "./NewsletterForm";
 import { Logo } from "./Logo";
+import { reveal } from "@/lib/motion";
 
 const columns = [
   {
@@ -24,7 +25,7 @@ export function Footer() {
     <footer className="border-t border-gray-200 bg-white">
       <div className="container-page pt-[70px] pb-12">
         <div className="flex flex-col gap-12 xl:flex-row xl:gap-[92px]">
-          <div className="flex w-full max-w-[528px] flex-col gap-[45px]">
+          <div data-reveal className="flex w-full max-w-[528px] flex-col gap-[45px]">
             <div className="flex flex-col gap-4">
               <Logo tone="dark" />
               <p className="type-body-s text-gray-950">
@@ -36,7 +37,7 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-3 xl:w-[580px] xl:grid-cols-[167px_167px_1fr]">
             {columns.map((col, i) => (
-              <div key={i} className="flex flex-col gap-6">
+              <div key={i} {...reveal("up", i + 1)} className="flex flex-col gap-6">
                 {col.title ? (
                   <h2 className="type-body-m leading-6 text-gray-400">{col.title}</h2>
                 ) : (

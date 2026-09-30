@@ -19,7 +19,7 @@ export function LoginForm() {
   if (status === "success") return <AuthSuccess title="Welcome back!" message="You're signed in. Continue learning where you left off." />;
 
   return (
-    <div className="flex flex-col lg:min-h-[683px]">
+    <div className="flex flex-col xl:min-h-[683px]">
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-10">
         <AuthHeading eyebrow="Sign In" title="Welcome Back" />
         <div className="flex flex-col gap-6">
@@ -47,7 +47,7 @@ export function LoginForm() {
         </div>
       </form>
 
-      <div className="mt-12 flex flex-col items-center gap-10 lg:mt-[73px]">
+      <div className="mt-12 flex flex-col items-center gap-10 xl:mt-[73px]">
         <div className="flex w-full items-center gap-[11px]" role="separator">
           <span className="h-px flex-1 bg-neutral-200 sm:w-[200px] sm:flex-none" />
           <span className="type-body-l text-neutral-400">or</span>
@@ -67,7 +67,7 @@ export function LoginForm() {
         </div>
       </div>
 
-      <p className="mt-12 text-center type-body-m text-neutral-400 lg:mt-auto">
+      <p className="mt-12 text-center type-body-m text-neutral-400 xl:mt-auto">
         New user?{" "}
         <Link href="/register" className="text-blue-800 hover:underline">
           Create an account

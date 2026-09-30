@@ -13,7 +13,7 @@ type SectionHeadingProps = {
 /** Heading M / Heading S title with a Body L description, as used across the landing sections. */
 export function SectionHeading({ title, description, size = "m", align = "center", className, titleClassName }: SectionHeadingProps) {
   return (
-    <div className={cn("flex flex-col gap-4", align === "center" ? "items-center text-center" : "items-start", className)}>
+    <div data-reveal className={cn("flex flex-col gap-4", align === "center" ? "items-center text-center" : "items-start", className)}>
       <h2
         className={cn(
           "font-poppins font-semibold tracking-[-0.01em] text-vulcan-950",

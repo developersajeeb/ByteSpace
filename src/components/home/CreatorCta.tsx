@@ -1,6 +1,7 @@
 import { GridLines } from "@/components/decor/GridLines";
 import { Ornaments, type Ornament } from "@/components/decor/Ornaments";
 import { ButtonLink } from "@/components/ui/Button";
+import { reveal } from "@/lib/motion";
 
 const ornaments: Ornament[] = [
   { src: "f9c0e0fd05-lime", x: 1078, y: -0.4, size: 188.9, desktopOnly: true },
@@ -17,15 +18,15 @@ export function CreatorCta() {
     <section className="relative isolate overflow-hidden bg-blue-800 py-24 lg:h-[488px] lg:py-0 lg:pt-[85px]">
       <GridLines />
       <div className="container-page relative flex max-w-[996px] flex-col items-center gap-10 text-center">
-        <h2 className="max-w-[710px] font-poppins text-[32px] leading-[1.2] font-semibold tracking-[-0.01em] text-gray-50 sm:text-[44px]">
+        <h2 {...reveal()} className="max-w-[710px] font-poppins text-[32px] leading-[1.2] font-semibold tracking-[-0.01em] text-gray-50 sm:text-[44px]">
           Unlock Your Potential as a Creator with ByteSpace
         </h2>
-        <p className="type-body-m text-gray-50 sm:type-body-l">
+        <p {...reveal("up", 1)} className="type-body-m text-gray-50 sm:type-body-l">
           Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a community
           comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by publishing your
           finest course on the ByteSpace Course Library.
         </p>
-        <ButtonLink href="/register" className="relative z-10">
+        <ButtonLink href="/register" {...reveal("up", 2)} className="relative z-10">
           Join as Creator
         </ButtonLink>
       </div>

@@ -4,6 +4,7 @@ import { HappyStudentsCard, ProgressCard } from "@/components/cards/FloatingCard
 import { GlowBlob } from "@/components/decor/GlowBlob";
 import { Icon } from "@/components/icons/Icon";
 import { courses } from "@/data/courses";
+import { reveal, stagger } from "@/lib/motion";
 
 const stats = [
   { value: "12K", label: "Students" },
@@ -56,7 +57,7 @@ export function Growth() {
       <div className="container-page relative flex flex-col gap-20 xl:gap-[72px]">
         {/* Row 1: text + course/student composite */}
         <div className="flex flex-col items-center gap-12 xl:w-[1258px] xl:translate-x-px xl:flex-row xl:gap-[63px]">
-          <div className="flex w-full max-w-[574px] flex-col gap-10">
+          <div {...reveal("left")} className="flex w-full max-w-[574px] flex-col gap-10">
             <h2 className={`${heading} max-w-[577px]`}>Your Path to Professional Growth Starts Here!</h2>
             <p className="max-w-[477px] type-body-l text-gray-700">
               Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you are
@@ -72,7 +73,7 @@ export function Growth() {
             </dl>
           </div>
 
-          <div className="relative h-[552px] w-[621px] shrink-0 max-md:[zoom:0.8] max-sm:[zoom:0.52]">
+          <div {...reveal("zoom")} className="relative h-[552px] w-[621px] shrink-0 max-md:[zoom:0.8] max-sm:[zoom:0.52]">
             <CourseCard course={courses[0]} variant="feature" className="absolute top-0 left-0" />
             <Image
               src="/images/hero-student.webp"
@@ -82,14 +83,14 @@ export function Growth() {
               sizes="577px"
               className="absolute top-3 left-0 h-[540px] w-[577px] drop-shadow-[25px_37px_36px_rgb(0_0_0/0.1)]"
             />
-            <ProgressCard roomy className="absolute top-[213px] left-[345px]" />
-            <Image src="/images/ornaments/cda676feaf-lime.webp" alt="" width={216} height={216} className={`${ornament} top-[67px] left-[404px]`} />
+            <ProgressCard roomy className="float absolute top-[213px] left-[345px]" />
+            <Image src="/images/ornaments/cda676feaf-lime.webp" alt="" width={216} height={216} style={stagger(1)} className={`float-slow ${ornament} top-[67px] left-[404px]`} />
           </div>
         </div>
 
         {/* Row 2: creator composite + text */}
         <div className="flex flex-col-reverse items-center gap-12 xl:translate-x-px xl:flex-row xl:gap-[79px]">
-          <div className="relative h-[596px] w-[541px] shrink-0 max-md:[zoom:0.8] max-sm:[zoom:0.56]">
+          <div {...reveal("zoom")} className="relative h-[596px] w-[541px] shrink-0 max-md:[zoom:0.8] max-sm:[zoom:0.56]">
             <RevenueCards />
             <Image
               src="/images/creator-student.webp"
@@ -99,11 +100,11 @@ export function Growth() {
               sizes="435px"
               className="absolute top-0 left-7 h-[596px] w-[435px] object-fill drop-shadow-[25px_37px_36px_rgb(0_0_0/0.1)]"
             />
-            <HappyStudentsCard roomy className="absolute top-[413px] left-[283px]" />
-            <Image src="/images/ornaments/e3b55902d6-lime.webp" alt="" width={216} height={216} className={`${ornament} top-[114px] left-[303px]`} />
+            <HappyStudentsCard roomy style={stagger(2)} className="float absolute top-[413px] left-[283px]" />
+            <Image src="/images/ornaments/e3b55902d6-lime.webp" alt="" width={216} height={216} style={stagger(3)} className={`float-slow ${ornament} top-[114px] left-[303px]`} />
           </div>
 
-          <div className="flex w-full max-w-[580px] flex-col gap-10">
+          <div {...reveal("right")} className="flex w-full max-w-[580px] flex-col gap-10">
             <h2 className={`${heading} max-w-[391px]`}>Create &amp; Manage Courses Easily.</h2>
             <p className="max-w-[574px] type-body-l leading-7 text-gray-700">
               <strong className="font-bold">ByteSpace</strong> supports individuals or entities in the creation, publication, and administration of

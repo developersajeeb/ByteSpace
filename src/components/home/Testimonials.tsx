@@ -1,6 +1,7 @@
 import { TestimonialCard } from "@/components/cards/TestimonialCard";
 import { GlowBlob } from "@/components/decor/GlowBlob";
 import { testimonials } from "@/data/testimonials";
+import { reveal } from "@/lib/motion";
 
 export function Testimonials() {
   return (
@@ -10,7 +11,7 @@ export function Testimonials() {
       <GlowBlob color="blue" size={1137} opacity={0.2} x={-442} y={149} />
 
       <div className="container-page relative flex max-w-[1236px] flex-col gap-12 lg:gap-[72px]">
-        <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:gap-[43px]">
+        <div data-reveal className="flex flex-col gap-6 xl:flex-row xl:items-end xl:gap-[43px]">
           <h2 className="font-poppins text-[32px] leading-[1.2] font-semibold tracking-[-0.01em] text-black sm:text-[44px] xl:w-[577px] xl:shrink-0">
             Discover What Our Community Is Saying
           </h2>
@@ -22,7 +23,9 @@ export function Testimonials() {
         </div>
         <div className="grid grid-cols-1 items-start justify-items-center gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-[41px]">
           {testimonials.map((t, i) => (
-            <TestimonialCard key={t.name} {...t} roomy={i > 0} />
+            <div key={t.name} {...reveal("up", i)} className="flex w-full justify-center">
+              <TestimonialCard {...t} roomy={i > 0} />
+            </div>
           ))}
         </div>
       </div>

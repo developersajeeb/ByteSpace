@@ -18,7 +18,7 @@ export function RegisterForm() {
     return <AuthSuccess title="Account created!" message="Welcome to ByteSpace. Your learning journey starts now." />;
 
   return (
-    <div className="flex flex-col lg:min-h-[672px]">
+    <div className="flex flex-col xl:min-h-[672px]">
       <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-10">
         <AuthHeading eyebrow="Create an Account" title="Welcome to ByteSpace" />
         <div className="flex flex-col gap-6">
@@ -54,7 +54,7 @@ export function RegisterForm() {
         </div>
       </form>
 
-      <p className="mt-12 text-center type-body-m text-gray-700 lg:mt-auto">
+      <p className="mt-12 text-center type-body-m text-gray-700 xl:mt-auto">
         Already have an account?{" "}
         <Link href="/login" className="text-blue-800 hover:underline">
           Login

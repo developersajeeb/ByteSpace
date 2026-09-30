@@ -3,6 +3,7 @@ import { CategoryStatCard, HappyStudentsCard, ProgressCard } from "@/components/
 import { GridLines } from "@/components/decor/GridLines";
 import { Ornaments, type Ornament } from "@/components/decor/Ornaments";
 import { SearchBar } from "@/components/ui/SearchBar";
+import { stagger } from "@/lib/motion";
 
 const ornaments: Ornament[] = [
   { src: "e3b55902d6-lime", x: -121.6, y: 221, size: 386.8, desktopOnly: true },
@@ -20,18 +21,20 @@ export function Hero() {
 
       <div className="container-page relative z-[3] flex flex-col items-center pt-[120px] lg:pt-[169px]">
         <div className="flex max-w-[935px] flex-col items-center gap-6 text-center lg:gap-8">
-          <h1 className="font-poppins text-[40px] leading-[1.2] font-semibold tracking-[-0.01em] text-white sm:text-[56px] lg:text-[72px]">
+          <h1 style={stagger(0)} className="intro font-poppins text-[40px] leading-[1.2] font-semibold tracking-[-0.01em] text-white sm:text-[56px] lg:text-[72px]">
             Get Access to Hundreds Courses Available
           </h1>
-          <p className="max-w-[819px] type-body-m text-gray-100 sm:type-body-l">
+          <p style={stagger(1)} className="intro max-w-[819px] type-body-m text-gray-100 sm:type-body-l">
             Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
           </p>
         </div>
-        <SearchBar className="mt-10 lg:mt-[60px]" />
+        <div style={stagger(2)} className="intro mt-10 flex w-full justify-center lg:mt-[60px]">
+          <SearchBar />
+        </div>
       </div>
 
       {/* 578×541 stage: the ring, student photo and floating cards keep their Figma offsets. */}
-      <div className="relative mx-auto mt-12 h-[541px] w-[578px] max-md:[zoom:0.75] max-sm:[zoom:0.55] lg:-mt-0.5">
+      <div style={stagger(3)} className="intro-zoom relative mx-auto mt-12 h-[541px] w-[578px] max-md:[zoom:0.75] max-sm:[zoom:0.55] lg:-mt-0.5">
         <div
           aria-hidden
           className="absolute top-[70px] left-[-286px] size-[1149px] rounded-full border-[320px] border-lime-500"
@@ -45,9 +48,9 @@ export function Hero() {
           sizes="578px"
           className="absolute inset-0 z-[1] h-[541px] w-[578px] drop-shadow-[25px_37px_36px_rgb(0_0_0/0.1)]"
         />
-        <ProgressCard className="absolute top-[139px] left-[411px] z-[1]" />
-        <HappyStudentsCard className="absolute top-[325px] left-[-103px] z-[1] max-sm:hidden" />
-        <CategoryStatCard className="absolute top-[127px] left-[-27px] z-[3]" />
+        <ProgressCard className="float absolute top-[139px] left-[411px] z-[1]" />
+        <HappyStudentsCard style={stagger(1)} className="float absolute top-[325px] left-[-103px] z-[1] max-sm:hidden" />
+        <CategoryStatCard style={stagger(2)} className="float absolute top-[127px] left-[-27px] z-[3]" />
       </div>
 
       <Ornaments items={ornaments} className="z-[2]" />

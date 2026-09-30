@@ -7,6 +7,7 @@ import { Pagination } from "@/components/ui/Pagination";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { catalogTopics } from "@/data/categories";
 import { catalog } from "@/data/courses";
+import { reveal, stagger } from "@/lib/motion";
 
 export const metadata: Metadata = { title: "Find Your Next Course" };
 
@@ -30,21 +31,25 @@ export default async function CoursesPage({ searchParams }: PageProps<"/courses"
     <>
       <BlueBand className="z-10 h-[300px] overflow-visible sm:h-[360px]">
         <div className="container-page flex flex-col items-center gap-8 pt-[120px] sm:pt-[164px]">
-          <h1 className="text-center font-poppins text-[28px] font-semibold tracking-[-0.01em] text-gray-50 sm:text-[36px] leading-[1.2]">
+          <h1 className="intro text-center font-poppins text-[28px] font-semibold tracking-[-0.01em] text-gray-50 sm:text-[36px] leading-[1.2]">
             Find Your Next Course
           </h1>
-          <SearchBar variant="scope" placeholder="Search" defaultValue={query} />
+          <div style={stagger(1)} className="intro flex w-full justify-center">
+            <SearchBar variant="scope" placeholder="Search" defaultValue={query} />
+          </div>
         </div>
       </BlueBand>
 
       <div className="container-page pt-[72px] pb-[72px]">
-        <CatalogToolbar />
-        <CategoryPills rows={[catalogTopics]} spread className="mt-8" />
+        <div data-reveal>
+          <CatalogToolbar />
+          <CategoryPills rows={[catalogTopics]} spread className="mt-8" />
+        </div>
 
         {results.length ? (
           <ul className="mt-10 grid grid-cols-1 justify-items-center gap-10 sm:grid-cols-2 lg:mt-[77px] lg:grid-cols-3">
             {results.map((course, i) => (
-              <li key={course.key} className="w-full max-w-[373px]">
+              <li key={course.key} {...reveal("up", i % 3)} className="w-full max-w-[373px]">
                 <CourseCard course={course} priority={i < 3} />
               </li>
             ))}

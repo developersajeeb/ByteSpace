@@ -44,7 +44,7 @@ export function ReviewList({ reviews }: { reviews: Review[] }) {
       {shown.length ? (
         <ul className="flex flex-col gap-6">
           {shown.map((r, i) => (
-            <li key={r.name} className="flex flex-col gap-6 rounded-3xl border border-gray-200 p-6 sm:p-[39px]">
+            <li key={r.name} data-reveal className="flex flex-col gap-6 rounded-3xl border border-gray-200 p-6 sm:p-[39px]">
               <div className="flex items-start justify-between gap-6">
                 <div className="flex flex-col gap-6">
                   <div className="flex gap-3">

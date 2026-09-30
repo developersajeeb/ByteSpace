@@ -15,9 +15,9 @@ export default async function CourseReviewsPage({ params }: PageProps<"/courses/
       <CourseTabs slug={slug} />
       <div className="flex flex-col gap-6">
         <TabHeading>What Learners Are Saying</TabHeading>
-        <p className="type-body-m text-gray-700">{reviewsIntro}</p>
+        <p data-reveal className="type-body-m text-gray-700">{reviewsIntro}</p>
 
-        <div className="flex flex-col items-center gap-6 rounded-2xl border border-gray-200 bg-white p-6 sm:flex-row sm:justify-center sm:p-10">
+        <div data-reveal="zoom" className="flex flex-col items-center gap-6 rounded-2xl border border-gray-200 bg-white p-6 sm:flex-row sm:justify-center sm:p-10">
           <div className="flex h-[140px] w-[129px] shrink-0 flex-col items-center justify-center rounded-lg bg-lime-400">
             <p className="type-label-s text-gray-950">Ratings</p>
             <p className="type-heading-s text-gray-950">{ratings.average}</p>

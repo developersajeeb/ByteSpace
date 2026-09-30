@@ -175,3 +175,83 @@
     cursor: pointer;
   }
 }
+
+/* ------------------------------------------------------------------
+   Motion — CSS only, no JS.
+   - [data-reveal]: scroll-driven reveal (browsers without
+     animation-timeline simply show the content).
+   - .intro: one-off entrance for above-the-fold content.
+   - .float / .float-slow: gentle idle motion for decorations.
+   Everything is disabled for prefers-reduced-motion.
+------------------------------------------------------------------- */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+}
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+}
+@keyframes reveal-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes float-slow {
+  50% {
+    transform: translateY(10px) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      /* --i staggers siblings (0, 1, 2…) by starting them slightly later. */
+      animation-range: entry calc(var(--i, 0) * 6%) entry calc(55% + var(--i, 0) * 6%);
+    }
+    [data-reveal="left"] {
+      animation-name: reveal-left;
+    }
+    [data-reveal="right"] {
+      animation-name: reveal-right;
+    }
+    [data-reveal="zoom"] {
+      animation-name: reveal-zoom;
+    }
+  }
+
+  .intro {
+    animation: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+  .intro-zoom {
+    animation: reveal-zoom 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+  .float {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -1.3s);
+  }
+  .float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -2.1s);
+  }
+}

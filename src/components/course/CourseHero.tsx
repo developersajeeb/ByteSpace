@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BlueBand } from "@/components/decor/BlueBand";
 import { Icon, type IconName } from "@/components/icons/Icon";
 import { ShareButton } from "./ShareButton";
+import { stagger } from "@/lib/motion";
 
 type CourseHeroProps = {
   title: string;
@@ -27,7 +28,7 @@ export function CourseHero({ title, subtitle, creator, level, rating, students, 
   return (
     <BlueBand className="xl:h-[957px]">
       <div className="container-page relative pt-[120px] pb-12 lg:pt-[172px] xl:pb-0">
-        <div className="flex flex-col gap-6 lg:max-w-[820px] lg:translate-x-0.5">
+        <div className="intro flex flex-col gap-6 lg:max-w-[820px] lg:translate-x-0.5">
           <div className="flex flex-col gap-2 text-gray-50">
             <h1 className="font-poppins text-[28px] font-semibold tracking-[-0.01em] sm:text-[36px] leading-[1.2]">{title}</h1>
             <p className="type-heading-xs">{subtitle}</p>
@@ -40,9 +41,9 @@ export function CourseHero({ title, subtitle, creator, level, rating, students, 
           </ul>
         </div>
 
-        <ShareButton title={title} className="mt-6 xl:absolute xl:top-[172px] xl:left-[calc(1rem+1163px)] xl:mt-0" />
+        <ShareButton title={title} className="intro mt-6 xl:absolute xl:top-[172px] xl:left-[calc(1rem+1163px)] xl:mt-0" />
 
-        <div className="relative mt-10 aspect-[720/479] w-full max-w-[720px] overflow-hidden rounded-3xl bg-[#443131] xl:absolute xl:top-[416px] xl:left-[calc(1rem+5px)] xl:mt-0 xl:w-[720px]">
+        <div style={stagger(2)} className="intro-zoom relative mt-10 aspect-[720/479] w-full max-w-[720px] overflow-hidden rounded-3xl bg-[#443131] xl:absolute xl:top-[416px] xl:left-[calc(1rem+5px)] xl:mt-0 xl:w-[720px]">
           <Image src={video} alt="Course preview" fill priority sizes="(min-width: 768px) 720px, 100vw" className="object-contain" />
           <button
             type="button"
